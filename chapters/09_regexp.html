@@ -1,7 +1,7 @@
 <!doctype html>
 <head>
   <meta charset="utf-8">
-  <title>Regular Expressions :: Eloquent JavaScript</title>
+  <title>Expresiones regulares :: Eloquent JavaScript</title>
   <link rel=stylesheet href="js/node_modules/codemirror/lib/codemirror.css">
   <script src="js/acorn_codemirror.js"></script>
   <link rel=stylesheet href="css/ejs.css">
@@ -29,27 +29,26 @@
 
 <h1><div class=chap_num>Capítulo 9</div>Regular Expressions</h1>
 <blockquote>
-<p><a class=p_ident id="p_MWUwIAb0uO" href="#p_MWUwIAb0uO"></a>Some people, when confronted with a
-problem, think ‘I know, I&#8217;ll use regular expressions.’ Now they have
-two problems.</p>
+<p><a class=p_ident id="p_MWUwIAb0uO" href="#p_MWUwIAb0uO"></a>Algunas personas, cuando se enfrentan
+a un problema, piensan ‘¡Ya sé, voy a utilizar una expresión regular.’Ahora tienen
+dos problemas.</p>
  <footer>Jamie Zawinski</footer>
 </blockquote>
 <blockquote>
-<p><a class=p_ident id="p_icxlw7+18l" href="#p_icxlw7+18l"></a>Yuan-Ma said, ‘When you cut against the grain of the wood, much
-strength is needed. When you program against the grain of a problem,
-much code is needed.’</p>
+<p><a class=p_ident id="p_icxlw7+18l" href="#p_icxlw7+18l"></a>Yuan-Ma dijo, ‘Cuando se corta en contra de la fibra de la madera se necesita
+mucha fuerza. Por lo tanto, cuando se programa en contra de la corriente de un problema,
+se necsita mucho código.’</p>
  <footer>Master Yuan-Ma, <cite>The Book of Programming</cite></footer>
 </blockquote>
-<p><a class=p_ident id="p_81b6macd9j" href="#p_81b6macd9j"></a>Programming
-tools and techniques survive and spread in a chaotic, evolutionary
-way. It&#8217;s not always the pretty or brilliant ones that win but rather
-the ones that function well enough within the right niche—for example,
-by being integrated with another successful piece of technology.</p>
-<p><a class=p_ident id="p_2ySNBCvXNS" href="#p_2ySNBCvXNS"></a>In this chapter, I will discuss one such
-tool, <em>regular expressions</em>. Regular expressions are a way to
-describe patterns in string data. They form a small, separate
-language that is part of JavaScript and many other languages and
-tools.</p>
+<p><a class=p_ident id="p_81b6macd9j" href="#p_81b6macd9j"></a>Las herramientas
+  y técnicas de programación sobreviven y se propagan de forma caótica y 
+  evolutiva.  No son siempre las bonitas o brillantes las que ganan, sino
+aquellas que funcionan lo suficiente bien dentro del nicho correcto, por ejemplo,
+aquellas que son integradas con  otra pieza de tecnología exitosa.</p>
+<p><a class=p_ident id="p_2ySNBCvXNS" href="#p_2ySNBCvXNS"></a>En este capítulo, discutiré una de 
+esas herramientas, <em>expresiones regulares</em>. Las expresiones regulares son una manera de
+describir patrones en datos de cadena . Estas forman un lenguaje pequeño e independiente
+que forma parte de JavaScript y muchos otros lenguajeS y herramientas.</p>
 <p><a class=p_ident id="p_cxbejyPUGl" href="#p_cxbejyPUGl"></a>Regular expressions are both terribly awkward
 and extremely useful. Their syntax is cryptic, and the programming
 interface JavaScript provides for them is clumsy. But they are a
