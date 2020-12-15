@@ -30,7 +30,7 @@
 <h1><div class=chap_num>Capítulo 9</div>Regular Expressions</h1>
 <blockquote>
 <p><a class=p_ident id="p_MWUwIAb0uO" href="#p_MWUwIAb0uO"></a>Algunas personas, cuando se enfrentan
-a un problema, piensan ‘¡Ya sé, voy a utilizar una expresión regular.’Ahora tienen
+a un problema, piensan ‘¡Ya sé, voy a utilizar una expresión regular!’. Ahora tienen
 dos problemas.</p>
  <footer>Jamie Zawinski</footer>
 </blockquote>
@@ -65,56 +65,56 @@ como un valor literal encerrando un patrón en caracteres de barra diagonal
 <p><a class=p_ident id="p_uNMQxzr01n" href="#p_uNMQxzr01n"></a>Ambos objetos de expresión regular representan el mismo
 patrón: un caracter  <em>a</em> seguido por una <em>b</em> seguido de una <em>c</em>.</p>
 <p><a class=p_ident id="p_qv8UWLVrTv" href="#p_qv8UWLVrTv"></a>Cuando se usa el constructor
-<code>RegExp</code> , el patrón se escribe como una cadena normal, por lo cual se
+<code>RegExp</code> , el patrón se escribe c omo una cadena normal, por lo cual se
 taplican las reglas habituales para las barras invertidas.</p>
-<p><a class=p_ident id="p_xB91PDBGKz" href="#p_xB91PDBGKz"></a>The second notation, where the pattern appears between
-slash characters, treats backslashes somewhat differently. First,
-since a forward slash ends the pattern, we need to put a backslash
-before any forward slash that we want to be <em>part</em> of the pattern. In
-addition, backslashes that aren&#8217;t part of special character codes
-(like <code>\n</code>) will be <em>preserved</em>, rather than ignored as they are in
-strings, and change the meaning of the pattern. Some characters, such
-as question marks and plus signs, have special meanings in regular
-expressions and must be preceded by a backslash if they are meant to
-represent the character itself.</p>
+<p><a class=p_ident id="p_xB91PDBGKz" href="#p_xB91PDBGKz"></a>La segunda notación, donde el patrón aparece entre
+caracteres de barra, trata a las barras invertidas de manera algo diferente. Primero,
+dado que una barra inclinada finaliza el patrón, necesitamos poner una barra invertida
+antes de cualquier barra inclinada que queremos que forme <em>parte</em> del patrón. Además, 
+las barras diagonales inversas que no forman parte de códigos de caracteres especiales
+(como <code>\n</code>) se <em>conservarán</em>, en lugar de ignorarse, ya que están en
+cadenas, y cambiarán el significado del patrón. Algunos caracteres, como
+los signos de interrogación y los signos de suma, tienen significados especiales en expresiones
+regulares y deben ir precedidos de una barra invertida si están destinados a
+representar el caracter en sí.</p>
 <pre data-language="javascript" class="snippet cm-s-default"><a class=c_ident id="c_GMbBpgLwwd" href="#c_GMbBpgLwwd"></a><span class="cm-keyword">var</span> <span class="cm-variable">eighteenPlus</span> <span class="cm-operator">=</span> <span class="cm-string-2">/eighteen\+/</span>;</pre>
-<p><a class=p_ident id="p_GYUjU5Z/Gb" href="#p_GYUjU5Z/Gb"></a>Knowing precisely what characters to backslash-escape when writing
-regular expressions requires you to know every character with a
-special meaning. For the time being, this may not be realistic, so
-when in doubt, just put a backslash before any character that is not a
-letter, number, or whitespace.</p>
-<h2><a class=h_ident id="h_vPyyYjMEtz" href="#h_vPyyYjMEtz"></a>Testing for matches</h2>
-<p><a class=p_ident id="p_0vbMMWCatE" href="#p_0vbMMWCatE"></a>Regular
-expression objects have a number of methods. The simplest one is
-<code>test</code>. If you pass it a string, it will return a Boolean telling
-you whether the string contains a match of the pattern in the
-expression.</p>
+<p><a class=p_ident id="p_GYUjU5Z/Gb" href="#p_GYUjU5Z/Gb"></a>Saber con precisión cuáles caracteres se deben usar con la barra invertida al escribir
+expresiones regulares requiere que conozcas cada caracter con un
+significado especial. Por el momento, esto puede no parecer realista, así
+que en caso de duda, simplemente coloca una barra invertida antes de cualquier caracter que no sea una
+letra, un número, o un espacio en blanco.</p>
+<h2><a class=h_ident id="h_vPyyYjMEtz" href="#h_vPyyYjMEtz"></a>Haciendo pruebas para encontrar coincidencias</h2>
+<p><a class=p_ident id="p_0vbMMWCatE" href="#p_0vbMMWCatE"></a>Los objetos
+de expresión regular tienen varios números. El más sencillo es
+<code>test</code>. Si le pasas una cadena, regresará un booleano que te indicará
+si la cadena contiene una coincidencia del patrón en la
+expresión.</p>
 <pre data-language="javascript" class="snippet cm-s-default"><a class=c_ident id="c_O53a6v4BM0" href="#c_O53a6v4BM0"></a><span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string-2">/abc/</span>.<span class="cm-property">test</span>(<span class="cm-string">"abcde"</span>));
 <span class="cm-comment">// → true</span>
 <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string-2">/abc/</span>.<span class="cm-property">test</span>(<span class="cm-string">"abxde"</span>));
 <span class="cm-comment">// → false</span></pre>
-<p><a class=p_ident id="p_WFokgkkjHh" href="#p_WFokgkkjHh"></a>A regular expression consisting of only nonspecial
-characters simply represents that sequence of characters. If <em>abc</em>
-occurs anywhere in the string we are testing against (not just at the
-start), <code>test</code> will return <code>true</code>.</p>
-<h2><a class=h_ident id="h_z4ZvUsIpEG" href="#h_z4ZvUsIpEG"></a>Matching a set of characters</h2>
-<p><a class=p_ident id="p_DtXmb/uhsO" href="#p_DtXmb/uhsO"></a>Finding out whether a
-string contains <em>abc</em> could just as well be done with a call to
-<code>indexOf</code>. Regular expressions allow us to go beyond that and express
-more complicated patterns.</p>
-<p><a class=p_ident id="p_i/99SEfu9y" href="#p_i/99SEfu9y"></a>Say we want to match any number. In a regular expression, putting
-a set of characters between square brackets makes that part of the
-expression match any of the characters between the brackets.</p>
-<p><a class=p_ident id="p_sC+2E08KnL" href="#p_sC+2E08KnL"></a>Both of the following expressions match all strings that contain a digit:</p>
+<p><a class=p_ident id="p_WFokgkkjHh" href="#p_WFokgkkjHh"></a>Una expresión regular que consta solo de caracteres
+no especiales simplemente representa esa secuencia de caracteres. Si <em>abc</em>
+aparece en cualquier parte de la cadena con la que estramos probando (no solo al
+principio), <code>"test"</code> regresará un <code>"true"</code>.</p>
+<h2><a class=h_ident id="h_z4ZvUsIpEG" href="#h_z4ZvUsIpEG"></a>Coincidencias de un juego de caracteres</h2>
+<p><a class=p_ident id="p_DtXmb/uhsO" href="#p_DtXmb/uhsO"></a>Averiguar si una
+cadena contiene <em>abc</em> también podría hacerse con una llamada a
+<code>indexOf</code>. Las expresiones regulares nos permiten ir más allá that y expresar
+patrones más complicados.</p>
+<p><a class=p_ident id="p_i/99SEfu9y" href="#p_i/99SEfu9y"></a>Digamos que queremos hacer coincidir cualquier número. En una expresión regular, poner 
+un conjunto de caracteres entre corchetes hace que esa parte de la
+expresión coincida con cualquiera de los caracteres entre los corchetes.</p>
+<p><a class=p_ident id="p_sC+2E08KnL" href="#p_sC+2E08KnL"></a>Las dos expresiones siguientes coinciden con todas las cadenas que contienen un dígito:</p>
 <pre data-language="javascript" class="snippet cm-s-default"><a class=c_ident id="c_lup2c3o+xm" href="#c_lup2c3o+xm"></a><span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string-2">/[0123456789]/</span>.<span class="cm-property">test</span>(<span class="cm-string">"in 1992"</span>));
 <span class="cm-comment">// → true</span>
 <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string-2">/[0-9]/</span>.<span class="cm-property">test</span>(<span class="cm-string">"in 1992"</span>));
 <span class="cm-comment">// → true</span></pre>
-<p><a class=p_ident id="p_i0WYLVUede" href="#p_i0WYLVUede"></a>Within square brackets, a dash (<code>-</code>) between two
-characters can be used to indicate a range of characters, where
-the ordering is determined by the character&#8217;s Unicode number.
-Characters 0 to 9 sit right next to each other in this ordering
-(codes 48 to 57), so <code>[0-9]</code> covers all of them and matches any
+<p><a class=p_ident id="p_i0WYLVUede" href="#p_i0WYLVUede"></a>Entre corchetes, se puede usar un guión (<code>-</code>) entre dos
+caracteres para indicar un rango de caracteres, donde
+el orden está determinado por el número unicode del caracter.
+Los caracteres del 0 al 9 se ubican uno al lado de otro en este orden
+(códigos 48 a 57), por lo que <code>[0-9]</code> los cubre todos y coincide any
 digit.</p>
 <p><a class=p_ident id="p_+w4wbahJfo" href="#p_+w4wbahJfo"></a>There are a number of common character groups that have
 their own built-in shortcuts. Digits are one of them: <code>\d</code> means the
